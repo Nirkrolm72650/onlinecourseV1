@@ -1,0 +1,230 @@
+{{#if user}}
+    <header class="header" id="header-admin">
+        <div class="header_toggle">  <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_img"> <img src="/assets/images/{{user.avatar}}" alt="avatar"></div>
+    </header>
+{{/if}}
+
+<body id="body-pd">
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> 
+                <a href="/" class="nav_logo"> 
+                    <i class='bx bx-layer nav_logo-icon'></i> 
+                    <span class="nav_logo-name">OnlineCourses</span> 
+                </a>
+                <div class="nav_list">
+                     <a href="/admin" class="nav_link"> 
+                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <span class="nav_name">Dashboard</span> 
+                    </a> 
+                    <a href="/user" class="nav_link active"> 
+                        <i class='bx bx-user nav_icon'></i> 
+                        <span class="nav_name">Users</span> 
+                    </a> 
+                    <a href="/CreationCours" class="nav_link"> 
+                        <i class='bx bx-message-square-detail nav_icon'></i> 
+                        <span class="nav_name">Cours</span> 
+                    </a> 
+                    <a href="/profil" class="nav_link"> 
+                        <i class='bx bx-user nav_icon'></i>
+                        <span class="nav_name">Profil</span> 
+                    </a>
+                    <a href="/message" class="nav_link"> 
+                        <i class='bx bx-chat'></i>
+                        <span class="nav_name">Message</span> 
+                    </a> 
+                </div>
+            
+            
+            </div> 
+                <a href="/deconnexion" class="nav_link"> 
+                    <i class='bx bx-log-out nav_icon'></i> 
+                    <span class="nav_name">Déconnexion</span> 
+                </a>
+        </nav>
+    </div>
+    <!--Container Main start-->
+
+    <div class="height-100 bg-light">
+      {{#if db}}
+  {{#each db}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">
+          <div class="d-flex align-items-center">
+            <img src="/assets/images/{{this.avatar}}" alt="Profil Picture" style="width: 45px; height: 45px"
+              class="rounded-circle" />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{this.nom}} {{this.prenom}}</p>
+              <p class="text-muted mb-0">{{this.email}}</p>
+            </div>
+          </div>
+        </th>
+        <td>
+          <label for="">Admin</label>
+          <input type="checkbox" id="isAdmin{{ user.id }}" name="isAdmin" />
+          <label for="">Verified</label>
+          <input type="checkbox" id="isVerified{{ user.id }}" name="isVerified" />
+          <label for="">Visiteur</label>
+          <input type="checkbox" id="isVisiteur{{ user.id }}" name="isVisiteur" />
+        </td>
+        <td>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+            data-mdb-target="#exampleModal-{{this.id}}">Modifier</button>
+
+          <!-- Modal -->
+          <form action="/user/{{this.id}}?_method=PUT" method="post">
+            <div class="modal fade" id="exampleModal-{{this.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile ">
+                    </div>
+
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
+                    </div>
+
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville">
+                    </div>
+
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="codePostal" name="codePostal" placeholder="Code Postal">
+                    </div>
+
+                    <label for="">Admin</label>
+                    <input type="checkbox" id="isAdmin{{ user.id }}" name="isAdmin" />
+                    <label for="">Verified</label>
+                    <input type="checkbox" id="isVerified{{ user.id }}" name="isVerified" />
+                    <label for="">Visiteur</label>
+                    <input type="checkbox" id="isVisiteur{{ user.id }}" name="isVisiteur" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" data-mdb-toggle="modal"
+            data-mdb-target="#exampleModal1-{{this.id}}">
+            Supprimer
+          </button>
+
+          <!-- Modal -->
+          <form action="/user/{{this.id}}?_method=DELETE" method="post">
+            <div class="modal fade" id="exampleModal1-{{this.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h5>Souhaitez-vous vraiment supprimer ?</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  {{/each}}
+  {{!-- Sinon on affiche un message --}}
+  {{else}}
+  <h1 style="text-align: center;">Base de donnée vide</h1>
+  {{/if}}
+    </div>
+
+
+<script>
+
+
+  // isAdmin
+  const isAdmin{{ user.id }} = document.getElementById('isAdmin{{ user.id }}')
+  const adm{{ user.id }} = { { isAdmin } }
+  if (adm{ { user.id } } === 1 ) isAdmin{ { user.id } }.checked = true
+
+  // isVisiteur 
+  const isVisiteur{{ user.id }} = document.getElementById('isVisiteur{{ user.id }}')
+  const vst{{ user.id }} = { { isVisiteur } }
+  if (vst{ { user.id } } === 1 ) isVisiteur{ { user.id } }.checked = true
+
+  // isVerified
+  const isVerified{{ user.id }} = document.getElementById('isVerified{{ user.id }}')
+  const vfd{{ user.id }} = { { isVerified } }
+  if (vfd{ { user.id } } === 1 ) isVerified{ { user.id } }.checked = true
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+   
+  const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId),
+    bodypd = document.getElementById(bodyId),
+    headerpd = document.getElementById(headerId)
+
+    // Validate that all variables exist
+    if(toggle && nav && bodypd && headerpd){
+      toggle.addEventListener('click', ()=>{
+        // show navbar
+        nav.classList.toggle('show')
+        // change icon
+        toggle.classList.toggle('bx-x')
+        // add padding to body
+        bodypd.classList.toggle('body-pd')
+        // add padding to header
+        headerpd.classList.toggle('body-pd')
+      })
+    }
+}
+
+showNavbar('header-toggle','nav-bar','body-pd','header-admin')
+
+/*===== LINK ACTIVE =====*/
+const linkColor = document.querySelectorAll('.nav_link')
+
+function colorLink(){
+if(linkColor){
+linkColor.forEach(l=> l.classList.remove('active'))
+this.classList.add('active')
+}
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+ // Your code to run since DOM is loaded and ready
+});
+</script>

@@ -1,0 +1,397 @@
+{
+  "definitions": {},
+  "info": {
+    "title": "projet-dwwm",
+    "version": "1.0.0",
+    "license": {
+      "name": "ISC"
+    },
+    "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3)."
+  },
+  "paths": {
+    "/connexion": {
+      "post": {
+        "summary": "/connexion",
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/user": {
+      "get": {
+        "summary": "/user",
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flash": {
+                  "type": "string",
+                  "example": "Get User"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success get"
+                },
+                "User": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "nom": {
+                        "type": "string"
+                      },
+                      "prenom": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "avatar": {
+                        "type": "string"
+                      },
+                      "isAdmin": {
+                        "type": "number"
+                      },
+                      "isVisiteur": {
+                        "type": "number"
+                      },
+                      "isVerified": {
+                        "type": "number"
+                      },
+                      "mobile": {
+                        "type": "string"
+                      },
+                      "adresse": {
+                        "type": "string"
+                      },
+                      "codePostal": {
+                        "type": "string"
+                      },
+                      "pays": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "nom",
+                      "prenom",
+                      "email",
+                      "password",
+                      "avatar",
+                      "mobile",
+                      "adresse",
+                      "codePostal",
+                      "pays"
+                    ]
+                  },
+                  "example": [
+                    {
+                      "id": 8,
+                      "nom": "Guyon",
+                      "prenom": "Brandon",
+                      "email": "guyonbrandon@gmail.com",
+                      "password": "admin",
+                      "avatar": "linuxbash.png",
+                      "mobile": "0620495469",
+                      "adresse:": "8 rue des pommes",
+                      "codePostal": 72980,
+                      "pays": "France"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/user/{id}": {
+      "put": {
+        "summary": "/user/{id}",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type":"number",
+            "required": true
+          },
+          {
+            "name": "nom",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "prenom",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "mobile",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "adresse",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "codePostal",
+            "in": "formData",
+            "type": "number"
+          },
+          {
+            "name": "pays",
+            "in": "formData",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      },
+      "delete": {
+        "summary": "/user/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/admin": {
+      "get": {
+        "summary": "/admin",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flash": {
+                  "type": "string",
+                  "example": "get cours"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success get"
+                },
+                "cours": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "prenom": {
+                        "type": "string"
+                      },
+                      "titre": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "prenom",
+                      "titre",
+                      "description"
+                    ]
+                  },
+                  "example": {
+                    "id": 78,
+                    "prenom": "string",
+                    "titre": "string",
+                    "description": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cours"
+        ]
+      }
+    },
+    "/admin/{id}": {
+      "delete": {
+        "summary": "/admin/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        },
+        "tags": [
+          "Cours"
+        ]
+      },
+      "put": {
+        "summary": "/admin/{id}",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "titre",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "contenu",
+            "in": "formData",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flash": {
+                  "type": "string",
+                  "example": "get cours"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Success update"
+                },
+                "cours": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "titre": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "contenu": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "titre",
+                      "description",
+                      "contenu"
+                    ]
+                  },
+                  "example": {
+                    "id": 78,
+                    "titre": "string",
+                    "description": "string",
+                    "contenu": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cours"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "tags": []
+}

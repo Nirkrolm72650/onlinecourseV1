@@ -1,0 +1,2 @@
+const GOOGLE_CLIENT_ID = '753102892683-589r89v01kop7godd106ev3iormkg587.apps.googleusercontent.com';
+const GOOGLE_CLIENT_SECRET = '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';

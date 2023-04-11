@@ -1,0 +1,26 @@
+
+
+<div class="pt-9">
+
+  <h2 class="text-center pb-5">Bouton de validation de compte :</h2>
+
+  <form action="/verification/{{ user.id }}" method="POST" class="mt-8 container">
+
+    <div class="row">
+      <input
+        class="col-md-6"
+        type="hidden"
+        name="email"
+        value="{{ user.email }}"
+        required
+      />
+
+    <button type="submit"
+            class="btn btn-primary col-6"
+            role="button"
+            >Valider mon email
+            </button>
+
+  </form>
+
+</div>

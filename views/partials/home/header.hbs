@@ -1,0 +1,147 @@
+{{#if user.isAdmin}}
+  {{>navAdmin}}
+{{else}}
+  {{>navbar}}
+{{/if}}
+
+<header class="header">  
+  <div class="p-5 text-center bg-image my-auto">
+    <div class="overlay"></div>
+    <div class="mask">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white">
+            <h1 class="mt-5 main_text">Apprenez à coder dès maintenant</h1>
+            <p class="mb-5">Concevez les applications web que vous désirez tant</p>
+            <a href="/inscription" class="btn btn-primary">Commencer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <div class="container miniatures">
+        <h3 class="titre_principale">Devenez un expert sur les technologies les plus demandées</h3>
+        <p class="paragraphe_principal">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque neque ipsum fugiat ipsa laudantium? Quod minima eaque saepe. Molestias at corporis provident sint, expedita optio modi ipsam dolorem rerum veniam.
+        Perspiciatis, nam fugiat vero deleniti a qui soluta aliquid aperiam sed corrupti hic molestiae aliquam animi enim necessitatibus quidem tenetur, voluptas in placeat maxime recusandae nulla distinctio rem! Minima, incidunt?</p>
+        <div class="row">
+            <div class="col-md-4 cours">
+                <img src="../../assets/Ressources/htmlcss.png" alt="htmlcss logo">
+                <h5>HTML/CSS</h5>
+                <p>Création de pages Web modernes</p>
+            </div>
+            <div class="col-md-4 cours">
+                <img src="../../assets/Ressources/flutter.png" alt="flutter logo">
+                <h5>Flutter</h5>
+                <p>Framework application mobile créé par Google</p>
+            </div>
+            <div class="col-md-4 cours">
+                <img src="../../assets/Ressources/Javascript.png" alt="javascript logo">
+                <h5>JavaScript</h5>
+                <p>Création de pages Web dynamiques</p>
+            </div>
+        </div>
+
+          <div class="row">
+            <div class="col-md-4 cours">
+              <img src="../../assets/Ressources/angular.png" alt="angular logo">
+              <h5>Angular</h5>
+              <p>Framework front-end créé par Google</p>
+            </div>
+            <div class="col-md-4 cours">
+              <img src="../../assets/Ressources/react.png" alt="react logo">
+              <h5>React 18</h5>
+              <p>Framework front-end créé par Facebook</p>
+            </div>
+            <div class="col-md-4 cours">
+              <img src="../../assets/Ressources/vue.png" alt="vue logo">
+              <h5>Vue 3</h5>
+              <p>Utilisé pour construire des interfaces utilisateur et des applications web monopages</p>
+            </div>
+        </div>
+    </div>
+
+
+<div class="container">
+  <!--Section: Contact v.2-->
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contactez-nous</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Vous avez une question ? Adressez vous à nous pour avoir plus d'informations</p>
+
+    <div class="row form-center">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form action="/" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <label for="nomEtPrenom" class="">Votre nom</label>
+                            <input type="text" id="nomEtPrenom" name="nomEtPrenom" class="form-control">
+                            
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <label for="email" class="">Votre Email</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                            
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <label for="sujet" class="">Sujet</label>
+                            <input type="text" id="sujet" name="sujet" class="form-control">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <label for="description">Votre message</label>
+                            <textarea type="text" id="description" name="description" rows="2" class="form-control md-textarea"></textarea>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            
+
+            <div class="text-center text-md-left">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+            <div class="status"></div>
+          </form>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+</div>

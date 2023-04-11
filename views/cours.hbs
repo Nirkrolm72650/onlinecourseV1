@@ -1,0 +1,43 @@
+{{#if user.isAdmin}}
+{{>navAdmin}}
+{{else}}
+{{>navConnected}}
+{{/if}}
+
+<style>
+
+    .header{
+        width: 100%;
+        height: auto;
+        background-color: #f6f4fd;
+    }
+
+    .titreDuCours{
+        margin-top: 100px;
+        text-align: center;
+        color: black;
+    }
+
+    .description{
+        text-align: center;
+        color: black;
+    }
+    .contenu{
+        margin: 100px;
+    }
+</style>
+
+{{#if db}}
+<header class="container-fluid header">
+    <h1 class="titreDuCours">{{db.titre}}</h1>
+    <p class="description">{{db.description}}</p>
+</header>
+
+<div class="container contenu">
+    {{{db.contenu}}}
+</div>
+
+
+{{else}}
+<h1> PB DB</h1>
+{{/if}}
