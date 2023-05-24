@@ -1,3 +1,5 @@
+const { inscripUser } = require('./AuthControllers')
+
 require('dotenv').config()
 const { MODE } = process.env
 
@@ -48,26 +50,69 @@ exports.updateUser = async (req, res) => {
     const { nom, prenom, email, mobile, adresse, ville, codePostal, pays } = req.body;
 
 
-    if (req.body.prenom) await db.query(`UPDATE users SET prenom="${prenom}" WHERE id="${id}";`);
+    // if (req.body.prenom) await db.query(`UPDATE users SET prenom="${mysql.escape(prenom)}" WHERE id="${id}";`);
 
-    if (req.body.nom) await db.query(`UPDATE users SET nom="${nom}" WHERE id="${id}";`);
+    // if (req.body.nom) await db.query(`UPDATE users SET nom="${mysql.escape(nom)}" WHERE id="${id}";`);
 
-    if (req.body.email) await db.query(`UPDATE users SET email="${email}" WHERE id="${id}";`)
+    // if (req.body.email) await db.query(`UPDATE users SET email="${mysql.escape(email)}" WHERE id="${id}";`)
 
-    if (req.body.mobile) await db.query(`UPDATE users SET mobile="${mobile}" WHERE id="${id}";`)
+    // if (req.body.mobile) await db.query(`UPDATE users SET mobile="${mysql.escape(mobile)}" WHERE id="${id}";`)
 
-    if (req.body.adresse) await db.query(`UPDATE users SET adresse="${adresse}" WHERE id="${id}";`)
+    // if (req.body.adresse) await db.query(`UPDATE users SET adresse="${mysql.escape(adresse)}" WHERE id="${id}";`)
 
-    if (req.body.ville) await db.query(`UPDATE users SET ville="${ville}" WHERE id="${id}";`)
+    // if (req.body.ville) await db.query(`UPDATE users SET ville="${mysql.escape(ville)}" WHERE id="${id}";`)
 
-    if (req.body.codePostal) await db.query(`UPDATE users SET codePostal="${codePostal}" WHERE id="${id}";`)
+    // if (req.body.codePostal) await db.query(`UPDATE users SET codePostal="${mysql.escape(codePostal)}" WHERE id="${id}";`)
 
-    if (req.body.pays) await db.query(`UPDATE users SET pays="${pays}" WHERE id="${id}";`)
+    // if (req.body.pays) await db.query(`UPDATE users SET pays="${mysql.escape(pays)}" WHERE id="${id}";`)
 
+    if (req.body.prenom) {
+        const updatePrenomQuery = 'UPDATE users SET prenom = ? WHERE id = ?';
+        await db.query(updatePrenomQuery, [req.body.prenom, id]);
+      }
+      
+      if (req.body.nom) {
+        const updateNomQuery = 'UPDATE users SET nom = ? WHERE id = ?';
+        await db.query(updateNomQuery, [req.body.nom, id]);
+      }
+      
+      if (req.body.email) {
+        const updateEmailQuery = 'UPDATE users SET email = ? WHERE id = ?';
+        await db.query(updateEmailQuery, [req.body.email, id]);
+      }
+      
+      if (req.body.mobile) {
+        const updateMobileQuery = 'UPDATE users SET mobile = ? WHERE id = ?';
+        await db.query(updateMobileQuery, [req.body.mobile, id]);
+      }
+      
+      if (req.body.adresse) {
+        const updateAdresseQuery = 'UPDATE users SET adresse = ? WHERE id = ?';
+        await db.query(updateAdresseQuery, [req.body.adresse, id]);
+      }
+      
+      if (req.body.ville) {
+        const updateVilleQuery = 'UPDATE users SET ville = ? WHERE id = ?';
+        await db.query(updateVilleQuery, [req.body.ville, id]);
+      }
+      
+      if (req.body.codePostal) {
+        const updateCodePostalQuery = 'UPDATE users SET codePostal = ? WHERE id = ?';
+        await db.query(updateCodePostalQuery, [req.body.codePostal, id]);
+      }
+      
+      if (req.body.pays) {
+        const updatePaysQuery = 'UPDATE users SET pays = ? WHERE id = ?';
+        await db.query(updatePaysQuery, [req.body.pays, id]);
+      }
+      
+
+    
     let sql = `UPDATE users SET isAdmin = '${(req.body.isAdmin === 'on' ? '1' : '0')}', 
-                            isVerified = '${(req.body.isVerified === 'on' ? '1' : '0')}', 
-                            isVisiteur = '${(req.body.isVisiteur === 'on' ? '1' : '0')}' WHERE id = '${req.params.id}';`
-
+    isVerified = '${(req.body.isVerified === 'on' ? '1' : '0')}', 
+    isVisiteur = '${(req.body.isVisiteur === 'on' ? '1' : '0')}' WHERE id = '${req.params.id}';`
+    
+    console.log(req.body.isVisiteur);
     await db.query(sql, function (err, data) {
         if (err) throw err;
         else res.redirect('/user');
@@ -91,6 +136,9 @@ exports.updateUser = async (req, res) => {
 
 
 }
+
+
+
 
 /* Fonction permettant d'éditer les rôles pour chaque utilisateur */
 // exports.editOneUser = async (req, res) => {

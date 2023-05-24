@@ -22,19 +22,19 @@ USE `OnlineCourses` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `OnlineCourses`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nom` VARCHAR(45) NOT NULL,
-  `prenom` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `avatar` LONGTEXT NOT NULL,
-  `isAdmin` INT NOT NULL,
-  `isVisiteur` INT NOT NULL,
-  `isVerified` INT NOT NULL,
-  `mobile` VARCHAR(45) NOT NULL,
-  `adresse` VARCHAR(255) NOT NULL,
-  `ville` VARCHAR(255) NOT NULL,
-  `codePostal` INT NOT NULL,
-  `pays` VARCHAR(255) NOT NULL,
+  `nom` VARCHAR(45),
+  `prenom` VARCHAR(45),
+  `email` VARCHAR(45),
+  `password` VARCHAR(255),
+  `avatar` LONGTEXT,
+  `isAdmin` INT,
+  `isVisiteur` INT,
+  `isVerified` INT,
+  `mobile` VARCHAR(45),
+  `adresse` VARCHAR(255),
+  `ville` VARCHAR(255),
+  `codePostal` VARCHAR(5),
+  `pays` VARCHAR(255),
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -45,12 +45,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `OnlineCourses`.`cours` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `titre` LONGTEXT NOT NULL,
-  `description` LONGTEXT NOT NULL,
-  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `titre` LONGTEXT,
+  `description` LONGTEXT,
+  `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `id_user` INT NOT NULL,
-  `contenu` LONGTEXT NOT NULL,
-  `image` VARCHAR(45) NOT NULL,
+  `contenu` LONGTEXT,
+  `image` VARCHAR(45),
   PRIMARY KEY (`id`),
   INDEX `fk_user_idx` (`id_user` ASC) VISIBLE,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
@@ -85,8 +85,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `OnlineCourses`.`image` (
   `id_cours` INT NOT NULL AUTO_INCREMENT,
-  `path` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `path` VARCHAR(45),
+  `name` VARCHAR(45),
   UNIQUE INDEX `id_cours_UNIQUE` (`id_cours` ASC),
   CONSTRAINT `fk_cours`
     FOREIGN KEY (`id_cours`)
@@ -101,8 +101,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `OnlineCourses`.`message` (
   `id_message` INT NOT NULL AUTO_INCREMENT,
-  `message` TEXT NOT NULL,
-  `sujet` VARCHAR(100) NOT NULL,
+  `message` LONGTEXT,
+  `sujet` VARCHAR(100) ,
   `id_user` INT NOT NULL,
   UNIQUE INDEX `id_message_UNIQUE` (`id_message` ASC) VISIBLE,
   PRIMARY KEY (`id_message`),

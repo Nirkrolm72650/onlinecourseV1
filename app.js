@@ -1,4 +1,4 @@
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const express = require('express');
 
 const {engine} = require('express-handlebars');
@@ -14,6 +14,7 @@ const path = require('path');
 const multer = require('multer');
 const mocha = require('mocha');
 const assert = require('assert');
+const cors = require('cors');
 
 const app = express();
 
@@ -23,7 +24,7 @@ swaggerDocument = require('./api/swagger.json')
 
 const expressOasGenerator = require('express-oas-generator');
 expressOasGenerator.init(app, {})
-
+app.use(cors());
 
 
 
@@ -79,6 +80,8 @@ db.connect((err) => {
   
 });
 
+
+
 // Déclaration du cookie
 var sessionStore = new MySQLStore(configDB);
 app.use(
@@ -101,13 +104,13 @@ app.use('*', (req, res, next) => {
 
 app.use('/api/v3', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const ROUTER = require('./router/router');
-app.use("/", ROUTER)
 
+const ROUTER = require('./router/router');
+app.use("/", ROUTER);
 //// Route pour API Swagger
 
 // Le serveur écoute sur le port 3000
-app.listen(PORT_NODE, () =>{
+app.listen(process.env.PORT_NODE, () =>{
     console.log('Le serveur est lancé sur le port 3000');
 });
 

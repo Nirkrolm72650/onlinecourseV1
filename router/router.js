@@ -3,10 +3,10 @@ const { MODE } = process.env
 const express = require('express');
 const router = express.Router();
 
-// // // connexion avec la base de donnée
+// connexion avec la base de donnée
 const db = require('../api/database/database');
 
-// // Import des controllers
+// Import des controllers
 const { home, connexion, editOneUser, profil, contact, Creationcours,
         inscription, seeCourses, user, connectUser, inscripUser,
         deconnexion, getUsers, updateUser, deleteOneUser, getCours, postCours,
@@ -14,7 +14,9 @@ const { home, connexion, editOneUser, profil, contact, Creationcours,
         deleteCours, updateCours, sendVerif, verifMail, getProfilUser, updateProfil, mdpOublie, updatePassword, getMessage } = require("../api/controllers");
 
 // Import des middlewares
-const { isAdmin, isVisiteur } = require('../api/middlewares');
+const {isAdmin} = require('../api/middlewares/admin.middleware.js');
+const {isVisiteur} = require('../api/middlewares/visiteur.middleware.js');
+const {isAuthenticated} = require('../api/middlewares/auth.middleware.js');
 
 // Multer
 const upload = require('../api/config/multer');
@@ -41,23 +43,22 @@ router.route('/deconnexion')
         .get(deconnexion)
 
 // Profil
-router.use(isAdmin, isVisiteur)
+
+
 router.route('/profil')
-        .get(getProfilUser)
+        .get(isAuthenticated ,isAdmin, isVisiteur, getProfilUser);
 router.route('/profil/:id')
         .put(upload.single('avatar'), updateProfil)
 
 // Cours + CRUD
-router.use(isVisiteur)
 router.route('/seeCourses')
-        .get(getSeeCourses)
+        .get(getSeeCourses, isVisiteur, isAdmin)
 router.route('/cours/:id')
-        .get(getCours);
+        .get(getCours, isAdmin);
 
 
-router.use(isAdmin)
 router.route('/Creationcours')
-        .get(Creationcours)
+        .get(Creationcours, isAdmin)
         .post(upload.single('avatar'), postCours)
 router.route('/Creationcours/contenu/:id')
         .get(getCours) 
