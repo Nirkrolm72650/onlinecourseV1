@@ -27,6 +27,16 @@ router.route('/')
         .get(home)
         .post(sendMailContact)
 
+router.get('/about', (req, res) => {
+        res.render('about');
+})
+
+router.get('/contact', (req, res) => {
+        res.render('contact');
+})
+
+
+
 // Auth
 router.route('/connexion')
         .get(connexion)
